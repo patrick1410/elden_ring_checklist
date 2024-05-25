@@ -1,0 +1,45 @@
+#root {
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Body */
+.chakra-ui-light {
+  background-color: #0d0d0d;
+}
+
+/* Table styles */
+th {
+  color: #7d7d7d !important;
+}
+
+td {
+  color: #e8e8e8;
+}
+
+.chakra-heading {
+  font-family: Georgia, "Times New Roman", Times, serif !important;
+}
+
+/* Checkbox styles */
+.css-1ydjfm6[data-checked] {
+  background-color: #d4af37 !important;
+  border-color: #d4af37 !important;
+}
+
+/* SearchField styles */
+.chakra-input:focus,
+.chakra-select:focus {
+  border: 1px solid #d4af37 !important;
+  box-shadow: none !important;
+}
+.chakra-input {
+  caret-color: #d4af37 !important;
+  color: #e8e8e8 !important;
+}
+.chakra-input::placeholder,
+.chakra-select {
+  color: #7d7d7d !important;
+}
