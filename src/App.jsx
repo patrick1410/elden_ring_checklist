@@ -22,6 +22,9 @@ export const App = () => {
   // For pagination
   const itemsPerPage = 20;
   const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(null);
+
+  // console.log(totalPages);
 
   useEffect(() => {
     const fetchBosses = async () => {
@@ -40,6 +43,10 @@ export const App = () => {
           ...bossItem,
           isChecked: storedCheckedState[bossItem.id] || false,
         }));
+
+        // Calculate and set Totalpages
+        const updatedTotalPages = Math.ceil(bosses.total / itemsPerPage);
+        setTotalPages(updatedTotalPages);
 
         setData(updatedData);
       } catch (error) {
@@ -93,7 +100,8 @@ export const App = () => {
 
   // Function for nextPage
   const handleNextPage = () => {
-    if (currentPage !== 5) setCurrentPage((prevPage) => prevPage + 1);
+    if (currentPage !== totalPages - 1)
+      setCurrentPage((prevPage) => prevPage + 1);
   };
 
   return (
@@ -114,7 +122,12 @@ export const App = () => {
             />
             <SelectSort changeFn={handleSort} />
           </Flex>
-          <Pagination prevPage={handlePrevPage} nextPage={handleNextPage} />
+          <Pagination
+            currentPage={currentPage}
+            prevPage={handlePrevPage}
+            nextPage={handleNextPage}
+            totalPages={totalPages}
+          />
           <Checklist
             data={data}
             searchField={searchField}
