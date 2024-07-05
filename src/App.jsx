@@ -1,42 +1,48 @@
 import "./App.css";
-
-import { SimpleGrid, Box, Flex, Container } from "@chakra-ui/react";
-
 import { Header } from "./components/Header";
+import { Checklist } from "./components/Checklist";
+import { useEffect, useState } from "react";
+import { Map } from "./components/Map";
+import { Box, SimpleGrid, Container, Flex } from "@chakra-ui/react";
 import { SearchField } from "./components/SearchField";
 import { SelectSort } from "./components/SelectSort";
-import { Checklist } from "./components/Checklist";
-import { Map } from "./components/Map";
-
 import { matchSorter } from "match-sorter";
 
-import { useState } from "react";
-
-export const fetchBosses = async () => {
-  try {
-    const response = await fetch("https://eldenring.fanapis.com/api/bosses");
-    const bosses = await response.json();
-
-    return bosses;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-const { data } = await fetchBosses();
-console.log(data);
-
 export const App = () => {
-  const [filteredBosses, setFilteredBosses] = useState([]); // State voor gefilterde elementen (SearchField)
+  const [data, setData] = useState([]);
+
+  const [filteredBosses, setFilteredBosses] = useState([]); // State for filtered elements (SearchField)
   const [searchField, setSearchField] = useState("");
+  const [sortBy, setSortBy] = useState("all"); // Default state for sortBy
 
-  const [sortBy, setSortBy] = useState("all");
+  useEffect(() => {
+    const fetchBosses = async () => {
+      try {
+        const response = await fetch(
+          "https://eldenring.fanapis.com/api/bosses"
+        );
+        const bosses = await response.json();
 
+        setData(
+          bosses.data.map((bossItem) => ({
+            ...bossItem,
+            isChecked: false,
+          }))
+        ); // Add isChecked prop
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchBosses();
+  }, []);
+
+  // Function for SelectSort
   const handleSort = (e) => {
     const value = e.target.value;
     setSortBy(value);
-  }; // Functie voor SelectSort
+  };
 
+  // Function for SearchField
   const handleSearchField = (e) => {
     const value = e.target.value.toLowerCase();
     const filtered = matchSorter(data, value, {
@@ -44,7 +50,20 @@ export const App = () => {
     });
     setFilteredBosses(filtered);
     setSearchField(e.target.value);
-  }; // Functie voor SearchField
+  };
+
+  // Function for toggle the isChecked prop
+  const handleToggleItem = (id) => {
+    setData((bossItems) =>
+      bossItems.map((bossItem) =>
+        bossItem.id === id
+          ? { ...bossItem, isChecked: !bossItem.isChecked }
+          : bossItem
+      )
+    );
+  };
+
+  // console.log(data);
 
   return (
     <Box className="app">
@@ -68,6 +87,7 @@ export const App = () => {
             data={data}
             searchField={searchField}
             filteredBosses={filteredBosses}
+            onHandleToggle={handleToggleItem}
             sortBy={sortBy}
           />
         </Container>
