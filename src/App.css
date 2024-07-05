@@ -43,3 +43,15 @@ td {
 .chakra-select {
   color: #7d7d7d !important;
 }
+
+/* Pagination */
+.chakra-button {
+  background-color: #d4af37 !important;
+  color: #e8e8e8 !important;
+}
+
+.chakra-button:hover {
+  background-color: #e8e8e8 !important;
+  color: #d4af37 !important;
+  transition: 0.3s ease-in;
+}

@@ -5,6 +5,7 @@ import { Box, SimpleGrid, Container, Flex } from "@chakra-ui/react";
 import { Header } from "./components/Header";
 import { SearchField } from "./components/SearchField";
 import { SelectSort } from "./components/SelectSort";
+import { Pagination } from "./components/Pagination";
 import { Checklist } from "./components/Checklist";
 import { Map } from "./components/Map";
 
@@ -30,18 +31,23 @@ export const App = () => {
         );
         const bosses = await response.json();
 
-        setData(
-          bosses.data.map((bossItem) => ({
-            ...bossItem,
-            isChecked: false,
-          }))
-        ); // Add isChecked prop
+        // Retrieve isChecked state from localStorage or initialize to false
+        const storedCheckedState =
+          JSON.parse(localStorage.getItem("isChecked")) || {};
+
+        // Add isChecked prop
+        const updatedData = bosses.data.map((bossItem) => ({
+          ...bossItem,
+          isChecked: storedCheckedState[bossItem.id] || false,
+        }));
+
+        setData(updatedData);
       } catch (error) {
         console.log(error);
       }
     };
     fetchBosses();
-  }, []);
+  }, [currentPage]);
 
   // Function for SelectSort
   const handleSort = (e) => {
@@ -68,15 +74,27 @@ export const App = () => {
           : bossItem
       )
     );
+
+    // Update isChecked state in localStorage
+    const storedCheckedState =
+      JSON.parse(localStorage.getItem("isChecked")) || {};
+    localStorage.setItem(
+      "isChecked",
+      JSON.stringify({ ...storedCheckedState, [id]: !storedCheckedState[id] })
+    );
   };
 
   // console.log(data);
 
   // Function for prevPage
-  const handlePrevPage = () => {};
+  const handlePrevPage = () => {
+    if (currentPage !== 0) setCurrentPage((prevPage) => prevPage - 1);
+  };
 
   // Function for nextPage
-  const handleNextPage = () => {};
+  const handleNextPage = () => {
+    if (currentPage !== 5) setCurrentPage((prevPage) => prevPage + 1);
+  };
 
   return (
     <Box className="app">
@@ -96,6 +114,7 @@ export const App = () => {
             />
             <SelectSort changeFn={handleSort} />
           </Flex>
+          <Pagination prevPage={handlePrevPage} nextPage={handleNextPage} />
           <Checklist
             data={data}
             searchField={searchField}
