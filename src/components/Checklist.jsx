@@ -46,7 +46,7 @@ export const Checklist = ({
             <Th>Name</Th>
             <Th>Region</Th>
             <Th>Defeated</Th>
-            <Th></Th>
+            <Th>{/* For Checkbox */}</Th>
           </Tr>
         </Thead>
         <Tbody>
