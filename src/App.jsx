@@ -18,11 +18,15 @@ export const App = () => {
   const [searchField, setSearchField] = useState("");
   const [sortBy, setSortBy] = useState("all"); // Default state for sortBy
 
+  // For pagination
+  const itemsPerPage = 20;
+  const [currentPage, setCurrentPage] = useState(0);
+
   useEffect(() => {
     const fetchBosses = async () => {
       try {
         const response = await fetch(
-          "https://eldenring.fanapis.com/api/bosses"
+          `https://eldenring.fanapis.com/api/bosses?limit=${itemsPerPage}&page=${currentPage}`
         );
         const bosses = await response.json();
 
@@ -67,6 +71,12 @@ export const App = () => {
   };
 
   // console.log(data);
+
+  // Function for prevPage
+  const handlePrevPage = () => {};
+
+  // Function for nextPage
+  const handleNextPage = () => {};
 
   return (
     <Box className="app">
