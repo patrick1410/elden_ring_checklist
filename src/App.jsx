@@ -1,12 +1,15 @@
 import "./App.css";
-import { Header } from "./components/Header";
-import { Checklist } from "./components/Checklist";
-import { useEffect, useState } from "react";
-import { Map } from "./components/Map";
+
 import { Box, SimpleGrid, Container, Flex } from "@chakra-ui/react";
+
+import { Header } from "./components/Header";
 import { SearchField } from "./components/SearchField";
 import { SelectSort } from "./components/SelectSort";
+import { Checklist } from "./components/Checklist";
+import { Map } from "./components/Map";
+
 import { matchSorter } from "match-sorter";
+import { useEffect, useState } from "react";
 
 export const App = () => {
   const [data, setData] = useState([]);
