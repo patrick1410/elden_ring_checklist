@@ -34,7 +34,7 @@ export const App = () => {
         );
         const bosses = await response.json();
 
-        // Retrieve isChecked state from localStorage or initialize to false
+        // Get isChecked state from localStorage or initialize to false
         const storedCheckedState =
           JSON.parse(localStorage.getItem("isChecked")) || {};
 
