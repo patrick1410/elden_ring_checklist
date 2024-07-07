@@ -1,4 +1,4 @@
-import { TableContainer, Table, Thead, Tr, Th, Tbody } from "@chakra-ui/react";
+import { Table, Thead, Tr, Th, Tbody, Box } from "@chakra-ui/react";
 import { BossItem } from "./BossItem";
 import { BossNotFound } from "./BossNotFound";
 import { useState, useEffect } from "react";
@@ -39,7 +39,7 @@ export const Checklist = ({
   }, [sortBy, searchField, filteredBosses, data]);
 
   return (
-    <TableContainer className="boss-list">
+    <Box overflowX="auto" className="boss-list">
       <Table variant="simple">
         <Thead>
           <Tr>
@@ -63,6 +63,6 @@ export const Checklist = ({
           {searchField && items.length === 0 && <BossNotFound />}
         </Tbody>
       </Table>
-    </TableContainer>
+    </Box>
   );
 };
