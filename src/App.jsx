@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { Box, SimpleGrid, Container, Flex } from "@chakra-ui/react";
+import { Box, SimpleGrid, Container } from "@chakra-ui/react";
 
 import { Header } from "./components/Header";
 import { SearchField } from "./components/SearchField";
@@ -113,15 +113,15 @@ export const App = () => {
         color="#D4AF37"
         mb={10}
       />
-      <SimpleGrid columns={2} gap={8}>
+      <SimpleGrid columns={{ base: 1, md: 2 }} gap={8}>
         <Container maxW="100%">
-          <Flex gap={8}>
+          <Box display="flex" flexDir={{ base: "column", md: "row" }} gap={8}>
             <SearchField
               placeholder="Search bosses by name/region..."
               changeFn={handleSearchField}
             />
             <SelectSort changeFn={handleSort} />
-          </Flex>
+          </Box>
           <Pagination
             currentPage={currentPage}
             prevPage={handlePrevPage}
