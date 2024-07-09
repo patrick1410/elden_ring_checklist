@@ -13,6 +13,9 @@
   .chakra-container {
     padding: 0 !important;
   }
+  .footer {
+    padding-bottom: 1rem;
+  }
 }
 
 /* Body */
@@ -64,5 +67,24 @@ td {
 .chakra-button:hover {
   background-color: #e8e8e8 !important;
   color: #d4af37 !important;
+  transition: 0.3s ease-in;
+}
+
+/* Icon styles */
+.github-icon,
+.linkedin-icon {
+  color: #7d7d7d !important;
+  width: 32px !important;
+  height: 32px !important;
+  margin: 10px 6px 6px 10px !important;
+}
+
+.linkedin-icon:hover {
+  color: #0a66c2 !important;
+  transition: 0.3s ease-in;
+}
+
+.github-icon:hover {
+  color: #e8e8e8 !important;
   transition: 0.3s ease-in;
 }

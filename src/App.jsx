@@ -8,6 +8,7 @@ import { SelectSort } from "./components/SelectSort";
 import { Pagination } from "./components/Pagination";
 import { Checklist } from "./components/Checklist";
 import { Map } from "./components/Map";
+import { Footer } from "./components/Footer";
 
 import { matchSorter } from "match-sorter";
 import { useEffect, useState } from "react";
@@ -143,6 +144,7 @@ export const App = () => {
         </Container>
         <Map />
       </Box>
+      <Footer pt={8} color="#D4AF37" />
     </Box>
   );
 };
