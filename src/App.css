@@ -1,3 +1,10 @@
+html,
+body {
+  height: 100vh;
+  display: flex;
+  width: 100%;
+}
+
 #root {
   width: 100%;
   margin: 0 auto;
@@ -12,9 +19,6 @@
   }
   .chakra-container {
     padding: 0 !important;
-  }
-  .footer {
-    padding-bottom: 1rem;
   }
 }
 
@@ -87,4 +91,24 @@ td {
 .github-icon:hover {
   color: #e8e8e8 !important;
   transition: 0.3s ease-in;
+}
+
+/* Layout styles */
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.flex-item {
+  display: flex;
+}
+
+.flex-item:nth-child(1) {
+  justify-content: center;
+}
+
+.flex-item:nth-child(3) {
+  justify-content: center;
+  align-items: flex-end;
 }

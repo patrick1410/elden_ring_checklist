@@ -11,7 +11,7 @@ export const Map = () => {
       <Box
         as="iframe"
         src="https://mapgenie.io/elden-ring/maps/the-lands-between?embed=light"
-        height={{ base: 320, md: 460 }}
+        height={{ base: 350, md: 500 }}
         width="100%"
       ></Box>
     </Box>

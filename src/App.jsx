@@ -106,15 +106,18 @@ export const App = () => {
   };
 
   return (
-    <Box className="app">
-      <Header
-        as="h1"
-        size="3xl"
-        title="Elden Ring Checklist"
-        color="#D4AF37"
-        mb={10}
-      />
+    <Box className="app flex-container">
+      <Box className="flex-item">
+        <Header
+          as="h1"
+          size="3xl"
+          title="Elden Ring Checklist"
+          color="#D4AF37"
+          mb={10}
+        />
+      </Box>
       <Box
+        className="flex-item"
         display={{ base: "flex", md: "grid" }}
         flexDir={{ base: "column" }}
         gridTemplateColumns={{ md: "1fr 1fr" }}
@@ -144,7 +147,9 @@ export const App = () => {
         </Container>
         <Map />
       </Box>
-      <Footer pt={8} color="#D4AF37" />
+      <Box className="flex-item" height="100%">
+        <Footer mt={10} mb={10} color="#D4AF37" />
+      </Box>
     </Box>
   );
 };

@@ -1,9 +1,9 @@
 import { Box, Text, Link, Icon } from "@chakra-ui/react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
-export const Footer = ({ pt, color }) => {
+export const Footer = ({ mb, mt, color }) => {
   return (
-    <Box className="footer" as="footer" pt={pt}>
+    <Box className="footer" as="footer" mt={mt} mb={mb}>
       <Text color={color}>
         &copy;2024 Made by{" "}
         <Link
