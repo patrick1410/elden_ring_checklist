@@ -107,7 +107,7 @@ export const App = () => {
 
   return (
     <Box className="app flex-container">
-      <Box className="flex-item">
+      <Box as="header" className="flex-item">
         <Header
           as="h1"
           size="3xl"
@@ -117,6 +117,7 @@ export const App = () => {
         />
       </Box>
       <Box
+        as="main"
         className="flex-item"
         display={{ base: "flex", md: "grid" }}
         flexDir={{ base: "column" }}
@@ -147,7 +148,7 @@ export const App = () => {
         </Container>
         <Map />
       </Box>
-      <Box className="flex-item" height="100%">
+      <Box as="footer" className="flex-item" height="100%">
         <Footer mt={10} mb={10} color="#D4AF37" />
       </Box>
     </Box>
