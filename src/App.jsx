@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { Box, SimpleGrid, Container } from "@chakra-ui/react";
+import { Box, Container } from "@chakra-ui/react";
 
 import { Header } from "./components/Header";
 import { SearchField } from "./components/SearchField";
@@ -113,8 +113,13 @@ export const App = () => {
         color="#D4AF37"
         mb={10}
       />
-      <SimpleGrid columns={{ base: 1, md: 2 }} gap={8}>
-        <Container maxW="100%">
+      <Box
+        display={{ base: "flex", md: "grid" }}
+        flexDir={{ base: "column" }}
+        gridTemplateColumns={{ md: "1fr 1fr" }}
+        gap={8}
+      >
+        <Container maxW="100%" overflowX="auto">
           <Box display="flex" flexDir={{ base: "column", md: "row" }} gap={8}>
             <SearchField
               placeholder="Search bosses by name/region..."
@@ -137,7 +142,7 @@ export const App = () => {
           />
         </Container>
         <Map />
-      </SimpleGrid>
+      </Box>
     </Box>
   );
 };
