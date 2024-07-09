@@ -8,11 +8,12 @@ export const Map = () => {
       position={{ base: "static", md: "fixed" }}
       right={0}
     >
-      <iframe
+      <Box
+        as="iframe"
         src="https://mapgenie.io/elden-ring/maps/the-lands-between?embed=light"
-        height="500"
+        height={{ base: 320, md: 460 }}
         width="100%"
-      ></iframe>
+      ></Box>
     </Box>
   );
 };
