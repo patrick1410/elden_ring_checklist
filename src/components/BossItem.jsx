@@ -6,7 +6,7 @@ export const BossItem = ({ name, region, isChecked, onHandleToggle, id }) => {
   return (
     <Tr className="boss-item">
       <Td>{name}</Td>
-      <Td>{region}</Td>
+      <Td display={{ base: "none", sm: "table-cell" }}>{region}</Td>
       <Td color={isChecked && "#D4AF37"}>{status}</Td>
       <Td>
         <Checkbox isChecked={isChecked} onChange={() => onHandleToggle(id)} />

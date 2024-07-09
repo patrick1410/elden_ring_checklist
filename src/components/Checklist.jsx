@@ -44,7 +44,7 @@ export const Checklist = ({
         <Thead>
           <Tr>
             <Th>Name</Th>
-            <Th>Region</Th>
+            <Th display={{ base: "none", sm: "table-cell" }}>Region</Th>
             <Th>Defeated</Th>
             <Th>{/* For Checkbox */}</Th>
           </Tr>
