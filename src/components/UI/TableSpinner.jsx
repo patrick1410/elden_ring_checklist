@@ -4,7 +4,7 @@ export const TableSpinner = () => {
   return (
     <Box overflow="hidden" mt={10}>
       <Spinner
-        thickness={{ base: 4, md: 6, "2xl": 8 }}
+        thickness={{ base: 4, md: 6 }}
         speed="0.65s"
         emptyColor="#7D7D7D"
         color="#D4AF37"
