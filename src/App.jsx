@@ -2,6 +2,7 @@ import "./App.css";
 
 import { Box, Container, Spinner } from "@chakra-ui/react";
 
+import { ErrorComponent } from "./components/ErrorComponent";
 import { Header } from "./components/Header";
 import { SearchField } from "./components/SearchField";
 import { SelectSort } from "./components/SelectSort";
@@ -14,6 +15,7 @@ import { matchSorter } from "match-sorter";
 import { useEffect, useState } from "react";
 
 export const App = () => {
+  const [error, setError] = useState(null);
   const [data, setData] = useState([]);
 
   const [filteredBosses, setFilteredBosses] = useState([]); // State for filtered elements (SearchField)
@@ -24,8 +26,6 @@ export const App = () => {
   const itemsPerPage = 20;
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(null);
-
-  // console.log(totalPages);
 
   useEffect(() => {
     const fetchBosses = async () => {
@@ -52,6 +52,7 @@ export const App = () => {
         setData(updatedData);
       } catch (error) {
         console.error(error);
+        setError(error);
       }
     };
     fetchBosses();
@@ -92,8 +93,6 @@ export const App = () => {
     );
   };
 
-  // console.log(data);
-
   // Function for prevPage
   const handlePrevPage = () => {
     if (currentPage !== 0) setCurrentPage((prevPage) => prevPage - 1);
@@ -107,7 +106,9 @@ export const App = () => {
 
   return (
     <Box className="app flex-container">
-      {data.length === 0 ? (
+      {error ? (
+        <ErrorComponent error={error} color="#B22222" />
+      ) : data.length === 0 ? (
         <Box
           display="flex"
           height="100%"
