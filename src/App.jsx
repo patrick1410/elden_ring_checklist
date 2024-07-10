@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { Box, Container } from "@chakra-ui/react";
+import { Box, Container, Spinner } from "@chakra-ui/react";
 
 import { Header } from "./components/Header";
 import { SearchField } from "./components/SearchField";
@@ -51,7 +51,7 @@ export const App = () => {
 
         setData(updatedData);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     };
     fetchBosses();
@@ -107,50 +107,73 @@ export const App = () => {
 
   return (
     <Box className="app flex-container">
-      <Box as="header" className="flex-item">
-        <Header
-          as="h1"
-          size="3xl"
-          title="Elden Ring Checklist"
-          color="#D4AF37"
-          mb={10}
-        />
-      </Box>
-      <Box
-        as="main"
-        className="flex-item"
-        display={{ base: "flex", md: "grid" }}
-        flexDir={{ base: "column" }}
-        gridTemplateColumns={{ md: "1fr 1fr" }}
-        gap={8}
-      >
-        <Container maxW="100%" overflowX="auto">
-          <Box display="flex" flexDir={{ base: "column", md: "row" }} gap={8}>
-            <SearchField
-              placeholder="Search bosses by name/region..."
-              changeFn={handleSearchField}
+      {data.length === 0 ? (
+        <Box
+          display="flex"
+          height="100%"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Spinner
+            thickness={{ base: 4, sm: 6, xl: 8, "2xl": 10 }}
+            speed="0.65s"
+            emptyColor="#7D7D7D"
+            color="#D4AF37"
+            boxSize={{ base: 16, sm: 24, md: 32, xl: 48, "2xl": 64 }}
+          />
+        </Box>
+      ) : (
+        <>
+          <Box as="header" className="flex-item">
+            <Header
+              as="h1"
+              size="3xl"
+              title="Elden Ring Checklist"
+              color="#D4AF37"
+              mb={10}
             />
-            <SelectSort changeFn={handleSort} />
           </Box>
-          <Pagination
-            currentPage={currentPage}
-            prevPage={handlePrevPage}
-            nextPage={handleNextPage}
-            totalPages={totalPages}
-          />
-          <Checklist
-            data={data}
-            searchField={searchField}
-            filteredBosses={filteredBosses}
-            onHandleToggle={handleToggleItem}
-            sortBy={sortBy}
-          />
-        </Container>
-        <Map />
-      </Box>
-      <Box as="footer" className="flex-item" height="100%">
-        <Footer mt={10} mb={10} color="#D4AF37" />
-      </Box>
+          <Box
+            as="main"
+            className="flex-item"
+            display={{ base: "flex", md: "grid" }}
+            flexDir={{ base: "column" }}
+            gridTemplateColumns={{ md: "1fr 1fr" }}
+            gap={8}
+          >
+            <Container maxW="100%" overflowX="auto">
+              <Box
+                display="flex"
+                flexDir={{ base: "column", md: "row" }}
+                gap={8}
+              >
+                <SearchField
+                  placeholder="Search bosses by name/region..."
+                  changeFn={handleSearchField}
+                />
+                <SelectSort changeFn={handleSort} />
+              </Box>
+              <Pagination
+                currentPage={currentPage}
+                prevPage={handlePrevPage}
+                nextPage={handleNextPage}
+                totalPages={totalPages}
+              />
+              <Checklist
+                data={data}
+                searchField={searchField}
+                filteredBosses={filteredBosses}
+                onHandleToggle={handleToggleItem}
+                sortBy={sortBy}
+              />
+            </Container>
+            <Map />
+          </Box>
+          <Box as="footer" className="flex-item" height="100%">
+            <Footer mt={10} mb={10} color="#D4AF37" />
+          </Box>
+        </>
+      )}
     </Box>
   );
 };
