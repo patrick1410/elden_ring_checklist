@@ -1,8 +1,10 @@
 import "./App.css";
 
-import { Box, Container, Spinner } from "@chakra-ui/react";
+import { Box, Container } from "@chakra-ui/react";
 
 import { ErrorComponent } from "./components/ErrorComponent";
+import { LoadingComponent } from "./components/LoadingComponent";
+
 import { Header } from "./components/Header";
 import { SearchField } from "./components/SearchField";
 import { SelectSort } from "./components/SelectSort";
@@ -109,20 +111,7 @@ export const App = () => {
       {error ? (
         <ErrorComponent error={error} color="#B22222" />
       ) : data.length === 0 ? (
-        <Box
-          display="flex"
-          height="100%"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Spinner
-            thickness={{ base: 4, sm: 6, xl: 8, "2xl": 10 }}
-            speed="0.65s"
-            emptyColor="#7D7D7D"
-            color="#D4AF37"
-            boxSize={{ base: 16, sm: 24, md: 32, xl: 48, "2xl": 64 }}
-          />
-        </Box>
+        <LoadingComponent />
       ) : (
         <>
           <Box as="header" className="flex-item">
