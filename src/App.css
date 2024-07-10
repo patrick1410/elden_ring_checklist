@@ -104,10 +104,12 @@ td {
   display: flex;
 }
 
+/* Header */
 .flex-item:nth-child(1) {
   justify-content: center;
 }
 
+/* Footer */
 .flex-item:nth-child(3) {
   justify-content: center;
   align-items: flex-end;
