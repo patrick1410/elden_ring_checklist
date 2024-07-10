@@ -93,6 +93,18 @@ export const App = () => {
       )
     );
 
+    // ADD THIS TO HANDLETOGGLE ITEM TO CHECK IF IN A QUERY
+
+    // const toggleCheck = (bossItems) =>
+    //   bossItems.map((bossItem) =>
+    //     bossItem.id === id
+    //       ? { ...bossItem, isChecked: !bossItem.isChecked }
+    //       : bossItem
+    //   );
+
+    // setData((prevData) => toggleCheck(prevData));
+    // setFilteredBosses((prevFiltered) => toggleCheck(prevFiltered));
+
     // Update isChecked state in localStorage
     const storedCheckedState =
       JSON.parse(localStorage.getItem("isChecked")) || {};
