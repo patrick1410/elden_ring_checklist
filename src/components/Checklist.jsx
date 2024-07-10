@@ -1,5 +1,6 @@
 import { Table, Thead, Tr, Th, Tbody, Box } from "@chakra-ui/react";
 import { BossItem } from "./BossItem";
+import { TableSpinner } from "./TableSpinner";
 import { BossNotFound } from "./BossNotFound";
 import { useState, useEffect } from "react";
 
@@ -9,6 +10,7 @@ export const Checklist = ({
   searchField,
   filteredBosses,
   sortBy,
+  showSpinner,
 }) => {
   const [items, setItems] = useState([]);
 
@@ -40,29 +42,33 @@ export const Checklist = ({
 
   return (
     <Box overflowX="auto" className="boss-list">
-      <Table variant="simple">
-        <Thead>
-          <Tr>
-            <Th>Name</Th>
-            <Th display={{ base: "none", sm: "table-cell" }}>Region</Th>
-            <Th>Defeated</Th>
-            <Th>{/* For Checkbox */}</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {items.map(({ name, id, region, isChecked }) => (
-            <BossItem
-              name={name}
-              key={id}
-              id={id}
-              region={region}
-              isChecked={isChecked}
-              onHandleToggle={onHandleToggle}
-            />
-          ))}
-          {searchField && items.length === 0 && <BossNotFound />}
-        </Tbody>
-      </Table>
+      {showSpinner ? (
+        <TableSpinner />
+      ) : (
+        <Table variant="simple">
+          <Thead>
+            <Tr>
+              <Th>Name</Th>
+              <Th display={{ base: "none", sm: "table-cell" }}>Region</Th>
+              <Th>Defeated</Th>
+              <Th>{/* For Checkbox */}</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {items.map(({ name, id, region, isChecked }) => (
+              <BossItem
+                name={name}
+                key={id}
+                id={id}
+                region={region}
+                isChecked={isChecked}
+                onHandleToggle={onHandleToggle}
+              />
+            ))}
+            {searchField && items.length === 0 && <BossNotFound />}
+          </Tbody>
+        </Table>
+      )}
     </Box>
   );
 };

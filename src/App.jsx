@@ -19,6 +19,7 @@ import { useEffect, useState } from "react";
 export const App = () => {
   const [error, setError] = useState(null);
   const [data, setData] = useState([]);
+  const [showSpinner, setShowSpinner] = useState(false); // Controls spinner visibility for Checklist when changing pages. If true, render <TableSpinner/>
 
   const [filteredBosses, setFilteredBosses] = useState([]); // State for filtered elements (SearchField)
   const [searchField, setSearchField] = useState("");
@@ -32,6 +33,8 @@ export const App = () => {
   useEffect(() => {
     const fetchBosses = async () => {
       try {
+        setShowSpinner(true);
+
         const response = await fetch(
           `https://eldenring.fanapis.com/api/bosses?limit=${itemsPerPage}&page=${currentPage}`
         );
@@ -55,6 +58,8 @@ export const App = () => {
       } catch (error) {
         console.error(error);
         setError(error);
+      } finally {
+        setShowSpinner(false);
       }
     };
     fetchBosses();
@@ -155,6 +160,7 @@ export const App = () => {
                 filteredBosses={filteredBosses}
                 onHandleToggle={handleToggleItem}
                 sortBy={sortBy}
+                showSpinner={showSpinner}
               />
             </Container>
             <Map />
