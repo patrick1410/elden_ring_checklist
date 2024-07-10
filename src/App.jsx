@@ -2,16 +2,16 @@ import "./App.css";
 
 import { Box, Container } from "@chakra-ui/react";
 
-import { ErrorComponent } from "./components/ErrorComponent";
-import { LoadingComponent } from "./components/LoadingComponent";
+import { ErrorComponent } from "./components/UI/ErrorComponent";
+import { LoadingComponent } from "./components/UI/LoadingComponent";
 
-import { Header } from "./components/Header";
-import { SearchField } from "./components/SearchField";
-import { SelectSort } from "./components/SelectSort";
+import { Header } from "./components/UI/Header";
+import { SearchField } from "./components/UI/SearchField";
+import { SelectSort } from "./components/UI/SelectSort";
 import { Pagination } from "./components/Pagination";
 import { Checklist } from "./components/Checklist";
 import { Map } from "./components/Map";
-import { Footer } from "./components/Footer";
+import { Footer } from "./components/UI/Footer";
 
 import { matchSorter } from "match-sorter";
 import { useEffect, useState } from "react";

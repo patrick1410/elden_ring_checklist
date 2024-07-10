@@ -1,7 +1,7 @@
 import { Table, Thead, Tr, Th, Tbody, Box } from "@chakra-ui/react";
 import { BossItem } from "./BossItem";
-import { TableSpinner } from "./TableSpinner";
-import { BossNotFound } from "./BossNotFound";
+import { TableSpinner } from "./UI/TableSpinner";
+import { BossNotFound } from "./UI/BossNotFound";
 import { useState, useEffect } from "react";
 
 export const Checklist = ({
