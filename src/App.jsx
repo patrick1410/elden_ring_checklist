@@ -19,7 +19,9 @@ import { useEffect, useState } from "react";
 export const App = () => {
   const [error, setError] = useState(null);
   const [data, setData] = useState([]);
-  const [showSpinner, setShowSpinner] = useState(false); // Controls spinner visibility for Checklist when changing pages. If true, render <TableSpinner/>
+
+  // Controls spinner visibility for Checklist when changing pages. If true, render <TableSpinner/>
+  const [showSpinner, setShowSpinner] = useState(false);
 
   const [filteredBosses, setFilteredBosses] = useState([]); // State for filtered elements (SearchField)
   const [searchField, setSearchField] = useState("");
