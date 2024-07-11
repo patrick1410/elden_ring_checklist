@@ -85,25 +85,15 @@ export const App = () => {
 
   // Function for toggle the isChecked prop
   const handleToggleItem = (id) => {
-    setData((bossItems) =>
+    const toggleItem = (bossItems) =>
       bossItems.map((bossItem) =>
         bossItem.id === id
           ? { ...bossItem, isChecked: !bossItem.isChecked }
           : bossItem
-      )
-    );
+      );
 
-    // ADD THIS TO HANDLETOGGLE ITEM TO CHECK IF IN A QUERY
-
-    // const toggleCheck = (bossItems) =>
-    //   bossItems.map((bossItem) =>
-    //     bossItem.id === id
-    //       ? { ...bossItem, isChecked: !bossItem.isChecked }
-    //       : bossItem
-    //   );
-
-    // setData((prevData) => toggleCheck(prevData));
-    // setFilteredBosses((prevFiltered) => toggleCheck(prevFiltered));
+    setData((prevData) => toggleItem(prevData));
+    setFilteredBosses((prevFiltered) => toggleItem(prevFiltered));
 
     // Update isChecked state in localStorage
     const storedCheckedState =
