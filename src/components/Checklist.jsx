@@ -65,7 +65,9 @@ export const Checklist = ({
                 onHandleToggle={onHandleToggle}
               />
             ))}
-            {searchField && items.length === 0 && <BossNotFound />}
+            {searchField && items.length === 0 && (
+              <BossNotFound text="No boss(es) found..." />
+            )}
           </Tbody>
         </Table>
       )}
