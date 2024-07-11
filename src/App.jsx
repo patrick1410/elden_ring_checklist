@@ -124,13 +124,7 @@ export const App = () => {
       ) : (
         <>
           <Box as="header" className="flex-item">
-            <Header
-              as="h1"
-              size="3xl"
-              title="Elden Ring Checklist"
-              color="#D4AF37"
-              mb={10}
-            />
+            <Header as="h1" size="3xl" title="Test" color="#D4AF37" mb={10} />
           </Box>
           <Box
             as="main"
